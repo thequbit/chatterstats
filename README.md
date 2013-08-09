@@ -3,6 +3,12 @@ chatterstats
 
 Gather Twitter stats for a radius
 
+
+#### see it in action ####
+
+http://chatterstats.mycodespace.net/
+
+
 #### Execution ####
 
 First, edit your sqlcreds.txt file to hold the correct connection information.
