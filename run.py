@@ -52,13 +52,14 @@ def main():
     # every minute grab the last 100 tweets from the radius of the lat and lng
     while True:
         now = time.strftime("%Y-%m-%d %H:%M:%S")
+        print "[       ]"
         print "[TIME   ] --- {0} ---".format(now)
         print "[INFO   ] Grabing latest tweets ..."
         tweets,success = gettweets(lat=lat,lng=lng,radius=radius,count=count)
         if success:
-            print "[INFO   ] Processing {0} tweets ..."
+            print "[INFO   ] Processing {0} tweets ...".format(len(tweets))
             count = savetweets(db,tweets)
             print "[INFO   ] Saved {0} of the {1} tweets.".format(count,len(tweets))
-        time.sleep(60)
+        time.sleep(6)
 
 main()
