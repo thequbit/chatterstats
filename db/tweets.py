@@ -75,7 +75,6 @@ class tweets:
 
 ##### Application Specific Functions #####
 
-
     # add if not exists
     def add_ine(self,username,id,text,created,pulldt):
         con = self.__connect()
@@ -93,3 +92,17 @@ class tweets:
             count = cur.rowcount
         con.close()
         return newid,count
+
+    def getlast24hours(self):
+        con = self.__connect()
+        with con:
+            cur = con.cursor()
+            cur.execute("SELECT text FROM tweets WHERE pulldt >= now() - INTERVAL 1 DAY;")
+            rows = cur.fetchall()
+            cur.close()
+        _tweets = []
+        for row in rows:
+            _tweets.append(row[0])
+        con.close()
+        return _tweets
+
