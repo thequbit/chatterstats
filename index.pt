@@ -6,8 +6,36 @@
 
     <style>
 
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
     body {
         font-family: 'Just Me Again Down Here', cursive;
+    }
+
+    div.topwrapper {
+    }
+
+    div.top {
+        margin: auto;
+        text-align: center;
+    }
+
+    div.button {
+        background-color: rgb(230, 230, 250);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        width: 130px;
+        height: 30px;
+        font-family: 'Just Me Again Down Here', cursive;
+        font-size: 20px;
+        text-align: center;
+        cursor: pointer;
+        vertical-align: middle;
     }
 
     </style>
@@ -16,22 +44,48 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="static/wordcloud2.js"></script>
+    <script src="static/canvas2image.js"></script>
 
-    <center>
-        <br>
-        <h1>Word Cloud of Tweets Around Monroe County, NY</h1>
-        <canvas id="wordcanvas" />
-    </center>
+    <div class="topwrapper">
+        <div class="top">
+            <br>
+            <h1>Word Cloud of Tweets Around Monroe County, NY</h1>
+            <br>
+
+            <center>
+                <div class="button" onclick="saveImage()">
+                    <span>Save As Image</span>
+                </div>
+            </center>
+            <br> 
+
+            <div class="canvaswrapper">
+                <canvas id="wordcanvas" />
+            </div>
+        </div>
+    </div>
 
     <script>
 
-        var canvas = document.getElementById('wordcanvas');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight - (window.innerHeight * .22);
+        function saveImage()
+        {
+            var oCanvas = document.getElementById("wordcanvas");
+            Canvas2Image.saveAsPNG(oCanvas);
+        }
 
-        $.getJSON('words.json', function(data) {
-            WordCloud(document.getElementById('wordcanvas'), { list: data } );
-        });
+        function load()
+        {
+ 
+            var canvas = document.getElementById('wordcanvas');
+            canvas.width = window.innerWidth;
+            canvas.height = 700;
+ 
+            $.getJSON('words.json', function(data) {
+                WordCloud(document.getElementById('wordcanvas'), { list: data } );
+            });
+        }
+
+        load();
 
     </script>
 
