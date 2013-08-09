@@ -21,4 +21,9 @@ forth, launch the twitter pull script
 
     > python run.py
 
+fifth, run your pyramid site
+
+    > python site.py
+    
+
 
