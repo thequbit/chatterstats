@@ -5,23 +5,15 @@ import re
 import nltk
 import simplejson as json
 
-def sanitize(text):
+@view_config(renderer="words.pt", name="words.json")
+def words_view(request):
+    t = _tweets('lisa.duffnet.local','csuser','password123%%%','chatterstats')
+    results = t.getlast24hours()
+    text = " ".join(results) 
     text = "".join([i for i in text if ord(i) in range(32, 127)])
     text = re.sub('http://','',text)
     text = re.sub(' +',' ',text)
     text = text.lower()
-    return text
-
-@view_config(renderer="index.pt", name="view")
-def index_view(request): 
-    return {}
-
-@view_config(renderer="words.pt", name="words.json")
-def index_view(request):
-    t = _tweets('lisa.duffnet.local','csuser','password123%%%','chatterstats')
-    results = t.getlast24hours()
-    text = " ".join(results) 
-    text = sanitize(text)
     _tokens = nltk.word_tokenize(text)
     tokens = nltk.FreqDist(word.lower() for word in _tokens)
     words = []
@@ -33,3 +25,7 @@ def index_view(request):
             words.append(word)
     jsonwords = json.dumps(words)
     return { "jsonwords": jsonwords }
+
+@view_config(renderer="index.pt")
+def index_view(request):
+    return {}

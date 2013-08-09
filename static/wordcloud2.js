@@ -107,8 +107,9 @@ if (!window.clearImmediate) {
 
   // Find out if the browser impose minium font size by
   // drawing small texts on a canvas and measure it's width.
-  var miniumFontSize = (function getMiniumFontSize() {
+  var miniumFontSize = (function getMiniumFontSize() {    
     if (!isSupported)
+      alert(20)
       return;
 
     var ctx = document.createElement('canvas').getContext('2d');
@@ -130,7 +131,7 @@ if (!window.clearImmediate) {
 
       size--;
     }
-
+    
     return 0;
   })();
 
@@ -159,7 +160,7 @@ if (!window.clearImmediate) {
       fontWeight: 'normal',
       color: 'random-dark',
       minSize: 0, // 0 to disable
-      weightFactor: 1,
+      weightFactor: 4,
       clearCanvas: true,
       backgroundColor: '#fff',  // opaque white = rgba(255, 255, 255, 1)
 
