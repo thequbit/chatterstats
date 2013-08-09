@@ -1,6 +1,16 @@
 <html>
 <head>
     <title>Chatter Stats - Monroe County, NY</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here' rel='stylesheet' type='text/css'>
+
+    <style>
+
+    body {
+        font-family: 'Just Me Again Down Here', cursive;
+    }
+
+    </style>
 </head>
 <body>
 
@@ -8,10 +18,16 @@
     <script src="static/wordcloud2.js"></script>
 
     <center>
+        <br>
+        <h1>Word Cloud of Tweets Around Monroe County, NY</h1>
         <canvas id="wordcanvas" />
     </center>
 
     <script>
+
+        var canvas = document.getElementById('wordcanvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight - (window.innerHeight * .22);
 
         $.getJSON('words.json', function(data) {
             WordCloud(document.getElementById('wordcanvas'), { list: data } );
