@@ -13,32 +13,25 @@ def init():
                )
     return t
 
-def main():
-    t = init()
-
-    lat="43.1547"
-    lng="-77.6158"
-    radius="20mi"
-    geocode = "{0},{1},{2}".format(lat,lng,radius)
-
-    print "Getting tweets for Monroe County ..."
-
-    # lat long of Rochester, NY
-    results = t.search.tweets(q="#roc",geocode=geocode,count=100)
-
-    print "Processing {0} tweets ...".format(len(results['statuses']))
-
-    hashtags = {}
-    tweets = []
-    for status in results['statuses']:
-        tweet = (status['id'],status['text'])
-        tweets.append(tweet)
-        for tag in status['entities']['hashtags']:
-            if tag['text'] in hashtags:
-                hashtags[tag['text']] += 1
-            else:
-                hashtags[tag['text']] = 1
-
-    print "{0} tweets and {1} hashtags successfully processed.".format(len(tweets),len(hashtags))
-
-main()
+def gettweets(lat,lng,radius="20mi",count=100):
+        t = init()
+        geocode = "{0},{1},{2}".format(lat,lng,radius)
+        results = t.search.tweets(q="#roc",geocode=geocode,count=count)
+        hashtags = {}
+        tweets = []
+        success = True
+    #try:
+        for status in results['statuses']:
+            sn = status['user']['screen_name']
+            tid = status['id']
+            text = status['text']
+            created = status['created_at']
+            tweets.append((sn,tid,text,created))
+            for tag in status['entities']['hashtags']:
+                if tag['text'] in hashtags:
+                    hashtags[tag['text']] += 1
+                else:
+                    hashtags[tag['text']] = 1
+    #except:
+    #    success = False
+        return tweets,success
