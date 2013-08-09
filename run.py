@@ -44,6 +44,7 @@ def main():
     lng="-77.6158"
     radius="20mi"
     count = 100
+    sleepcount = 30
 
     creds = getcreds()
     db = db_tweets(creds['host'],creds['username'],
@@ -60,6 +61,6 @@ def main():
             print "[INFO   ] Processing {0} tweets ...".format(len(tweets))
             count = savetweets(db,tweets)
             print "[INFO   ] Saved {0} of the {1} tweets.".format(count,len(tweets))
-        time.sleep(6)
+        time.sleep(sleepcount)
 
 main()
