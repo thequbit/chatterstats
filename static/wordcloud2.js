@@ -160,7 +160,7 @@ if (!window.clearImmediate) {
       fontWeight: 'normal',
       color: 'random-dark',
       minSize: 0, // 0 to disable
-      weightFactor: 4,
+      weightFactor: 2,
       clearCanvas: true,
       backgroundColor: '#fff',  // opaque white = rgba(255, 255, 255, 1)
 
