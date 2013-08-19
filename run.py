@@ -61,6 +61,8 @@ def main():
             print "[INFO   ] Processing {0} tweets ...".format(len(tweets))
             count = savetweets(db,tweets)
             print "[INFO   ] Saved {0} of the {1} tweets.".format(count,len(tweets))
+        else:
+            time.sleep(60*5) # wait 5 minutes of we are over budget
         time.sleep(sleepcount)
 
 main()
