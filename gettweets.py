@@ -14,13 +14,13 @@ def init():
     return t
 
 def gettweets(lat,lng,radius="20mi",count=100):
-        t = init()
-        geocode = "{0},{1},{2}".format(lat,lng,radius)
-        results = t.search.tweets(q="#roc",geocode=geocode,count=count)
-        hashtags = {}
-        tweets = []
-        success = True
-    #try:
+    t = init()
+    geocode = "{0},{1},{2}".format(lat,lng,radius)
+    results = t.search.tweets(q="#roc",geocode=geocode,count=count)
+    hashtags = {}
+    tweets = []
+    success = True
+    try:
         for status in results['statuses']:
             sn = status['user']['screen_name']
             tid = status['id']
@@ -32,6 +32,6 @@ def gettweets(lat,lng,radius="20mi",count=100):
                     hashtags[tag['text']] += 1
                 else:
                     hashtags[tag['text']] = 1
-    #except:
-    #    success = False
-        return tweets,success
+    except:
+        success = False
+    return tweets,success
