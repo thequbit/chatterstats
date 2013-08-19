@@ -38,6 +38,12 @@
         vertical-align: middle;
     }
 
+    div.footer {
+        padding: 10px;
+        font: 10px Arial;
+        text-align: center;
+    }
+
     </style>
 </head>
 <body>
@@ -62,6 +68,12 @@
             <div class="canvaswrapper">
                 <canvas id="wordcanvas" />
             </div>
+            <br>
+
+            <div class="footer">
+                <a href="https://github.com/thequbit/chatterstats">Source Code</a>
+            </div>
+            <br>
         </div>
     </div>
 
