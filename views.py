@@ -19,7 +19,7 @@ def words_view(request):
     _tokens = nltk.word_tokenize(text)
     tokens = nltk.FreqDist(word.lower() for word in _tokens)
     ignorewords= ['amp','and','but','its','for','roc','the','you','out','via',
-                  'this','your',"you're",'not','that','are','have','has','than']
+                  'this','your','youre','not','that','are','have','has','than']
     words = []
     for token,frequency in tokens.items():
         if len(token) > 2 and not token in ignorewords:
